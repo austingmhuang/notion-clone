@@ -34,7 +34,7 @@ const EditablePage = () => {
     if (currentBlock) {
       currentBlock.ref.nextElementSibling.focus()
     }
-  }, [blocks])
+  }, [currentBlock])
 
   const setCaretToEnd = (element) => {
     const range = document.createRange()
@@ -48,14 +48,10 @@ const EditablePage = () => {
 
   const deleteBlockHandler = (currentBlock) => {
     const previousBlock = currentBlock.ref.previousElementSibling
-    console.log(previousBlock)
     if (previousBlock) {
       const index = blocks.map((b) => b.id).indexOf(currentBlock.id)
-      console.log(index)
       const updatedBlocks = [...blocks]
-      console.log(updatedBlocks)
       updatedBlocks.splice(index, 1)
-      console.log(updatedBlocks)
       setBlocks(updatedBlocks)
       setCaretToEnd(previousBlock)
       previousBlock.focus()
