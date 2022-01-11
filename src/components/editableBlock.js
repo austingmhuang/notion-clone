@@ -61,8 +61,6 @@ function EditableBlock(props) {
     if (e.key === 'Enter') {
       if (previousKey !== 'Shift') {
         e.preventDefault()
-        console.log('did it')
-        console.log(props)
         props.addBlock({
           id: props.id,
           ref: contentEditable.current,
@@ -71,13 +69,14 @@ function EditableBlock(props) {
     }
     if (e.key === 'Backspace' && text.length === 0) {
       e.preventDefault()
-      console.log('deletedBlock')
       props.deleteBlock({
         id: props.id,
         ref: contentEditable.current,
       })
     }
-    setPreviousKey({ previousKey: e.key })
+    if (previousKey !== 'Shift') {
+      setPreviousKey(e.key)
+    }
   }
 
   return (
@@ -93,6 +92,7 @@ function EditableBlock(props) {
         innerRef={contentEditable}
         className="Block"
         html={text}
+        tagName={tag}
         onBlur={handleBlur}
         onChange={handleChange}
         onKeyDown={handleKeyDown}

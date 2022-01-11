@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { matchSorter } from 'match-sorter'
 
 const MENU_HEIGHT = 150
+
 const allowedTags = [
   {
     id: 'page-title',
@@ -52,7 +53,7 @@ const SelectMenu = (props) => {
         setSelected(nextSelected)
         break
       default:
-        setCommand(command + e.key)
+        setCommand(e.key)
         break
     }
   }
@@ -66,6 +67,7 @@ const SelectMenu = (props) => {
   }, [])
 
   useEffect(() => {
+    console.log(command)
     setItems(matchSorter(allowedTags, command, { keys: ['tag'] }))
   }, [command])
 
