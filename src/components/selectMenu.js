@@ -53,10 +53,14 @@ const SelectMenu = (props) => {
         setSelected(nextSelected)
         break
       default:
-        setCommand(e.key)
+        setCommand(command + e.key)
         break
     }
   }
+
+  /**
+   *  Re-register the event listener every time, so a callback always gets fresh state from the enclosing scope
+   */
 
   useEffect(() => {
     document.addEventListener('keydown', keyDownHandler)
@@ -64,11 +68,11 @@ const SelectMenu = (props) => {
     return function cleanup() {
       document.removeEventListener('keydown', keyDownHandler)
     }
-  }, [])
+  }, [command])
 
   useEffect(() => {
     console.log(command)
-    setItems(matchSorter(allowedTags, command, { keys: ['tag'] }))
+    setItems(matchSorter(allowedTags, command, { keys: ['label'] }))
   }, [command])
 
   const x = props.position.x

@@ -4,7 +4,6 @@ This app is designed to be work similarly to Notion, but simplified for the purp
 
 ## MVP
 
-
 <ul>
 <li> [x] Create, Delete, Edit blocks of text </li>
 <li> [ ] Select Menu for Formatting, images, links, etc..</li>
@@ -18,9 +17,11 @@ This app is designed to be work similarly to Notion, but simplified for the purp
 <li>[ ] User-Authentication, only allow company employees to read/write/access </li>
 <li>[ ] Shareable Link </li>
 <li>[ ] Database to store images and blogs</li>
+<li>[ ] Drag n Drop blocks of text</li>
 </ul>
 
 ## Additional Features
+
   <ul>
   <li>[ ] Exportable</li>
   <li>[ ] Categorization </li>
