@@ -73,7 +73,6 @@ const SelectMenu = (props) => {
   }, [command])
 
   useEffect(() => {
-    console.log(command)
     setItems(matchSorter(allowedTags, command, { keys: ['label'] }))
   }, [command])
 
