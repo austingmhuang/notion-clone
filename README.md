@@ -20,6 +20,7 @@ This app is designed to be work similarly to Notion, but simplified for the purp
 <li>[ ] Shareable Link </li>
 <li>[ ] Database to store images and blogs</li>
 <li>[ ] Drag n Drop blocks of text</li>
+<li>[ ] Highlighting text allows for italics, bold, etc... </li>
 </ul>
 
 ## Additional Features

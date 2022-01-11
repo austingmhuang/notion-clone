@@ -91,7 +91,7 @@ function EditableBlock(props) {
       )}
       <ContentEditable
         innerRef={contentEditable}
-        className="Block"
+        className="bg-sky-600"
         html={text}
         tagName={tag}
         onBlur={handleBlur}
