@@ -38,6 +38,9 @@ function EditableBlock(props) {
     if (e.key === '/') {
       openSelectMenuHandler()
     }
+    if (e.key === 'Shift') {
+      setPreviousKey('')
+    }
   }
 
   const openSelectMenuHandler = () => {
@@ -66,15 +69,15 @@ function EditableBlock(props) {
           ref: contentEditable.current,
         })
       }
-    }
-    if (e.key === 'Backspace' && text.length === 0) {
+    } else if (e.key === 'Backspace' && text.length === 0) {
       e.preventDefault()
       props.deleteBlock({
         id: props.id,
         ref: contentEditable.current,
       })
+    } else {
+      setPreviousKey(e.key)
     }
-    setPreviousKey(e.key)
   }
 
   return (
