@@ -53,7 +53,9 @@ const SelectMenu = (props) => {
         setSelected(nextSelected)
         break
       default:
-        setCommand(command + e.key)
+        if (e.key.length === 1) {
+          setCommand(command + e.key)
+        }
         break
     }
   }
