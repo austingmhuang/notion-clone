@@ -74,9 +74,7 @@ function EditableBlock(props) {
         ref: contentEditable.current,
       })
     }
-    if (previousKey !== 'Shift') {
-      setPreviousKey(e.key)
-    }
+    setPreviousKey(e.key)
   }
 
   return (
