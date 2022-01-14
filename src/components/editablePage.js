@@ -34,7 +34,7 @@ const EditablePage = () => {
     if (currentBlock) {
       currentBlock.ref.nextElementSibling.focus()
     }
-  }, [currentBlock])
+  }, [blocks])
 
   const setCaretToEnd = (element) => {
     const range = document.createRange()
@@ -59,7 +59,7 @@ const EditablePage = () => {
   }
 
   return (
-    <div className="Page">
+    <div className="min-h-screen bg-gray-50 md:px-32 py-6 flex flex-col relative overflow-hidden sm:py-12">
       {blocks.map((block, key) => {
         return (
           <EditableBlock

@@ -81,7 +81,9 @@ const SelectMenu = (props) => {
   const positionAttributes = { top: y, left: x }
 
   return (
-    <div className="SelectMenu" style={positionAttributes}>
+    <div
+      className={`top-[${positionAttributes.top}px] left-[${positionAttributes.left}px]`}
+    >
       <div className="Items">
         {items.map((item, key) => {
           const isSelected = items.indexOf(item) === selected

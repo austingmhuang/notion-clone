@@ -45,6 +45,7 @@ function EditableBlock(props) {
 
   const openSelectMenuHandler = () => {
     const { x, y } = getCaretCoordinates()
+
     setSelectMenuIsOpen(true)
     setSelectMenuPosition({ x: x, y: y })
     document.addEventListener('click', closeSelectMenuHandler)
@@ -91,7 +92,7 @@ function EditableBlock(props) {
       )}
       <ContentEditable
         innerRef={contentEditable}
-        className="bg-sky-600"
+        className="outline-0 outline-transparent"
         html={text}
         tagName={tag}
         onBlur={handleBlur}

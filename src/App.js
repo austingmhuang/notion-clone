@@ -1,5 +1,3 @@
-import logo from './logo.svg'
-import './App.css'
 import EditablePage from './components/editablePage'
 
 function App() {
