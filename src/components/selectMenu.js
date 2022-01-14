@@ -87,7 +87,7 @@ const SelectMenu = (props) => {
       style={{
         position: 'absolute',
         left: `${positionX}px`,
-        top: `${positionY}px`,
+        top: `${positionY + 24}px`,
       }}
     >
       <div className="Items">
