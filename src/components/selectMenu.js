@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { matchSorter } from 'match-sorter'
 
-const MENU_HEIGHT = 150
-
 const allowedTags = [
   {
     id: 'page-title',
@@ -30,6 +28,8 @@ const SelectMenu = (props) => {
   const [items, setItems] = useState(allowedTags)
   const [command, setCommand] = useState('')
   const [selected, setSelected] = useState(0)
+  const [positionX, setPositionX] = useState(0)
+  const [positionY, setPositionY] = useState(0)
 
   const keyDownHandler = (e) => {
     switch (e.key) {
@@ -76,13 +76,19 @@ const SelectMenu = (props) => {
     setItems(matchSorter(allowedTags, command, { keys: ['label'] }))
   }, [command])
 
-  const x = props.position.x
-  const y = props.position.y - MENU_HEIGHT
-  const positionAttributes = { top: y, left: x }
+  useEffect(() => {
+    setPositionX(props.position.x)
+    setPositionY(props.position.y)
+  }, [])
 
   return (
     <div
-      className={`top-[${positionAttributes.top}px] left-[${positionAttributes.left}px]`}
+      className={`py-4 px-4 bg-white shadow-xl ring-1 ring-gray-900/5 sm:max-w-lg sm:mx-auto sm:rounded-lg`}
+      style={{
+        position: 'absolute',
+        left: `${positionX}px`,
+        top: `${positionY}px`,
+      }}
     >
       <div className="Items">
         {items.map((item, key) => {
