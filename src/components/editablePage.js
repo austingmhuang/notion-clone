@@ -34,7 +34,7 @@ const EditablePage = () => {
     if (currentBlock) {
       currentBlock.ref.nextElementSibling.focus()
     }
-  }, [blocks])
+  }, [currentBlock])
 
   const setCaretToEnd = (element) => {
     const range = document.createRange()
