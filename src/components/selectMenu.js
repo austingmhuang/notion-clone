@@ -3,6 +3,11 @@ import { matchSorter } from 'match-sorter'
 
 const allowedTags = [
   {
+    id: 'paragraph',
+    tag: 'p',
+    label: 'Text',
+  },
+  {
     id: 'page-title',
     tag: 'h1',
     label: 'Heading 1',
@@ -16,11 +21,6 @@ const allowedTags = [
     id: 'subheading',
     tag: 'h3',
     label: 'Heading 3',
-  },
-  {
-    id: 'paragraph',
-    tag: 'p',
-    label: 'Text',
   },
 ]
 
@@ -71,7 +71,12 @@ const SelectMenu = ({ position, onSelect, close }) => {
   }, [items, selected, command, onSelect, close])
 
   useEffect(() => {
-    setItems(matchSorter(allowedTags, command, { keys: ['label'] }))
+    setItems(
+      matchSorter(allowedTags, command, {
+        keys: ['label'],
+        baseSort: (a, b) => (a.index < b.index ? -1 : 1),
+      })
+    )
   }, [command])
 
   useEffect(() => {
@@ -90,6 +95,7 @@ const SelectMenu = ({ position, onSelect, close }) => {
     >
       <div className="Items">
         {items.map((item, key) => {
+          console.log(item)
           const isSelected = items.indexOf(item) === selected
           return (
             <div
@@ -99,6 +105,20 @@ const SelectMenu = ({ position, onSelect, close }) => {
               tabIndex="0"
               onClick={() => onSelect(item.tag)}
             >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 inline-block"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
               {item.label}
             </div>
           )
