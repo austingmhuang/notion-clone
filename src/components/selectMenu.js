@@ -95,11 +95,11 @@ const SelectMenu = ({ position, onSelect, close }) => {
     >
       <div className="Items">
         {items.map((item, key) => {
-          console.log(item)
           const isSelected = items.indexOf(item) === selected
           return (
             <div
               className={isSelected ? 'bg-slate-100' : 'bg-white'}
+              onMouseOver={() => setSelected(items.indexOf(item))}
               key={key}
               role="button"
               tabIndex="0"
