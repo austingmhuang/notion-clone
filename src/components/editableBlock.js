@@ -92,7 +92,8 @@ function EditableBlock(props) {
       )}
       <ContentEditable
         innerRef={contentEditable}
-        className="outline-0 outline-transparent"
+        class="outline-0 outline-transparent focus:empty:before:content-[attr(placeholder)] before:text-slate-300"
+        placeholder="Type / for additional options"
         html={text}
         tagName={tag}
         onBlur={handleBlur}
