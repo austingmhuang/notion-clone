@@ -24,62 +24,60 @@ const allowedTags = [
   },
 ]
 
-const SelectMenu = (props) => {
+const SelectMenu = ({ position, onSelect, close }) => {
   const [items, setItems] = useState(allowedTags)
   const [command, setCommand] = useState('')
   const [selected, setSelected] = useState(0)
   const [positionX, setPositionX] = useState(0)
   const [positionY, setPositionY] = useState(0)
 
-  const keyDownHandler = (e) => {
-    switch (e.key) {
-      case 'Enter':
-        e.preventDefault()
-        props.onSelect(items[selected].tag)
-        break
-      case 'Backspace':
-        if (!command) props.close()
-        setCommand(command.substring(0, command.length - 1))
-        break
-      case 'ArrowUp':
-        e.preventDefault()
-        const prevSelected = selected === 0 ? items.length - 1 : selected - 1
-        setSelected(prevSelected)
-        break
-      case 'ArrowDown':
-      case 'Tab':
-        e.preventDefault()
-        const nextSelected = selected === items.length - 1 ? 0 : selected + 1
-        setSelected(nextSelected)
-        break
-      default:
-        if (e.key.length === 1) {
-          setCommand(command + e.key)
-        }
-        break
-    }
-  }
-
-  /**
-   *  Re-register the event listener every time, so a callback always gets fresh state from the enclosing scope
-   */
-
   useEffect(() => {
+    const keyDownHandler = (e) => {
+      switch (e.key) {
+        case 'Enter':
+          e.preventDefault()
+          onSelect(items[selected].tag)
+          break
+        case 'Backspace':
+          if (!command) close()
+          setCommand(command.slice(0, -1))
+          break
+        case 'ArrowUp':
+          e.preventDefault()
+          if (selected !== 0) {
+            setSelected(selected - 1)
+          }
+          break
+        case 'ArrowDown':
+        case 'Tab':
+          e.preventDefault()
+          if (selected !== items.length - 1) {
+            setSelected(selected + 1)
+          }
+          break
+        default:
+          if (e.key.length === 1) {
+            setCommand(command + e.key)
+          }
+          break
+      }
+    }
+
     document.addEventListener('keydown', keyDownHandler)
 
     return function cleanup() {
       document.removeEventListener('keydown', keyDownHandler)
     }
-  }, [command])
+  }, [items, selected, command, onSelect, close])
 
   useEffect(() => {
     setItems(matchSorter(allowedTags, command, { keys: ['label'] }))
   }, [command])
 
   useEffect(() => {
-    setPositionX(props.position.x)
-    setPositionY(props.position.y)
-  }, [])
+    setPositionX(position.x)
+    setPositionY(position.y)
+  }, [position.x, position.y])
 
   return (
     <div
@@ -95,11 +93,11 @@ const SelectMenu = (props) => {
           const isSelected = items.indexOf(item) === selected
           return (
             <div
-              className="bg-white hover:bg-slate-100"
+              className={isSelected ? 'bg-slate-100' : 'bg-white'}
               key={key}
               role="button"
               tabIndex="0"
-              onClick={() => props.onSelect(item.tag)}
+              onClick={() => onSelect(item.tag)}
             >
               {item.label}
             </div>
