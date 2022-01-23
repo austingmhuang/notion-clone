@@ -22,7 +22,7 @@ const EditablePage = () => {
   }
 
   const addBlockHandler = (currentBlock) => {
-    const newBlock = { id: uuidv4(), html: '', tag: 'p' }
+    const newBlock = { id: uuidv4(), html: '', tag: currentBlock.tag }
     const index = blocks.map((b) => b.id).indexOf(currentBlock.id)
     const updatedBlocks = [...blocks]
     updatedBlocks.splice(index + 1, 0, newBlock)

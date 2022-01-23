@@ -68,6 +68,7 @@ function EditableBlock(props) {
         props.addBlock({
           id: props.id,
           ref: contentEditable.current,
+          tag: tag,
         })
       }
     } else if (e.key === 'Backspace' && text.length === 0) {
@@ -92,7 +93,7 @@ function EditableBlock(props) {
       )}
       <ContentEditable
         innerRef={contentEditable}
-        class="outline-0 outline-transparent focus:empty:before:content-[attr(placeholder)] before:text-slate-300"
+        className="outline-0 outline-transparent focus:empty:before:content-[attr(placeholder)] before:text-slate-300"
         placeholder="Type / for additional options"
         html={text}
         tagName={tag}
