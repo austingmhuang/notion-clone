@@ -24,9 +24,8 @@ const allowedTags = [
   },
 ]
 
-const SelectMenu = ({ position, onSelect, close }) => {
+const SelectMenu = ({ position, onSelect, close, command, setCommand }) => {
   const [items, setItems] = useState(allowedTags)
-  const [command, setCommand] = useState('')
   const [selected, setSelected] = useState(0)
   const [positionX, setPositionX] = useState(0)
   const [positionY, setPositionY] = useState(0)
@@ -37,6 +36,7 @@ const SelectMenu = ({ position, onSelect, close }) => {
         case 'Enter':
           e.preventDefault()
           onSelect(items[selected].tag)
+          close()
           break
         case 'Backspace':
           if (!command) close()
@@ -68,7 +68,7 @@ const SelectMenu = ({ position, onSelect, close }) => {
     return function cleanup() {
       document.removeEventListener('keydown', keyDownHandler)
     }
-  }, [items, selected, command, onSelect, close])
+  }, [items, selected, command, onSelect, close, setCommand])
 
   useEffect(() => {
     setItems(

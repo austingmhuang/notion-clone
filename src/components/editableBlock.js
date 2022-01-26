@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react'
+import { useEffect } from 'react/cjs/react.development'
 import ContentEditable from '../utils/content-editable'
 import SelectMenu from './selectMenu'
 
 function EditableBlock(props) {
   const [text, setText] = useState('')
   const [tag, setTag] = useState('p')
+  const [command, setCommand] = useState('')
   const contentEditable = useRef()
   const [previousKey, setPreviousKey] = useState('')
   const [selectMenuIsOpen, setSelectMenuIsOpen] = useState(false)
@@ -34,6 +36,8 @@ function EditableBlock(props) {
 
   const handleBlur = () => {}
 
+  useEffect(() => {})
+
   const handleKeyUp = (e) => {
     if (e.key === '/') {
       openSelectMenuHandler()
@@ -45,7 +49,6 @@ function EditableBlock(props) {
 
   const openSelectMenuHandler = () => {
     const { x, y } = getCaretCoordinates()
-
     setSelectMenuIsOpen(true)
     setSelectMenuPosition({ x: x, y: y })
     document.addEventListener('click', closeSelectMenuHandler)
@@ -58,12 +61,14 @@ function EditableBlock(props) {
   }
 
   const tagSelectionHandler = (tag) => {
+    setText(text.slice(0, -(1 + command.length)))
     setTag(tag)
   }
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      if (previousKey !== 'Shift') {
+      if (previousKey === 'Shift' || (selectMenuIsOpen && text.length <= 1)) {
+      } else {
         e.preventDefault()
         props.addBlock({
           id: props.id,
@@ -89,6 +94,8 @@ function EditableBlock(props) {
           position={selectMenuPosition}
           onSelect={tagSelectionHandler}
           close={closeSelectMenuHandler}
+          command={command}
+          setCommand={setCommand}
         />
       )}
       <ContentEditable
