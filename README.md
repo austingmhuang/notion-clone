@@ -10,11 +10,10 @@ This app is designed to be work similarly to Notion, but simplified for the purp
   <ul>
   <li>[x] Select menu appears on typing "/" </li>
   <li>[x] Select menu can change the Markdown</li>
-  <li>[ ] Select menu is user-friendly</li>
-  <li>[ ] Select menu has all available Markdown/format options</li>
+  <li>[x] Select menu has keyboard navigation and mouse navigation</li>
+  <li>[x] Select menu has all available Markdown/format options</li>
   <li>[ ] Select menu allows links, images, videos </li>
   <li>[ ] Select menu disappears when it's clear the user just wants to type a "/" </li>
-  <li>[ ] Make the select menu create a new Block with intended Format</li>
   </ul>
 <li>[ ] User-Authentication, only allow company employees to read/write/access </li>
 <li>[ ] Shareable Link </li>
