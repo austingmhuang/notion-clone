@@ -6,6 +6,8 @@ This app is designed to be work similarly to Notion, but simplified for the purp
 
 <ul>
 <li> [x] Create, Delete, Edit blocks of text </li>
+<li> [ ] Drag & Drop blocks </li>
+<li> [ ] Highlighting text allows for italicization, bold, etc... </li>
 <li> [ ] Select Menu for Formatting, images, links, etc..</li>
   <ul>
   <li>[x] Select menu appears on typing "/" </li>
