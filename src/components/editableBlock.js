@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react'
-import { useEffect } from 'react/cjs/react.development'
 import ContentEditable from '../utils/content-editable'
 import SelectMenu from './selectMenu'
 
@@ -36,8 +35,6 @@ function EditableBlock(props) {
 
   const handleBlur = () => {}
 
-  useEffect(() => {})
-
   const handleKeyUp = (e) => {
     if (e.key === '/') {
       openSelectMenuHandler()
@@ -49,6 +46,7 @@ function EditableBlock(props) {
 
   const openSelectMenuHandler = () => {
     const { x, y } = getCaretCoordinates()
+    setCommand('')
     setSelectMenuIsOpen(true)
     setSelectMenuPosition({ x: x, y: y })
     document.addEventListener('click', closeSelectMenuHandler)
@@ -67,7 +65,7 @@ function EditableBlock(props) {
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      if (previousKey === 'Shift' || (selectMenuIsOpen && text.length <= 1)) {
+      if (previousKey === 'Shift' || selectMenuIsOpen) {
       } else {
         e.preventDefault()
         props.addBlock({
