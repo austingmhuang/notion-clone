@@ -10,7 +10,6 @@ const EditablePage = () => {
 
   const updatePageHandler = (updatedBlock) => {
     const index = blocks.map((b) => b.id).indexOf(updatedBlock.id)
-    console.log(index)
     const updatedBlocks = [...blocks]
     updatedBlocks[index] = {
       ...updatedBlocks[index],
@@ -60,10 +59,10 @@ const EditablePage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 sm:px-24 md:px-48 lg:px-72 xl:px-96 py-6 flex flex-col relative overflow-hidden sm:py-12">
-      {blocks.map((block, key) => {
+      {blocks.map((block) => {
         return (
           <EditableBlock
-            key={key}
+            key={block.id}
             id={block.id}
             tag={block.tag}
             html={block.html}
